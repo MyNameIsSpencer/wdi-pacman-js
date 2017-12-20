@@ -64,10 +64,10 @@ function displayMenu() {
   if (!powerPellets <= 0) {
     console.log('(p) Eat Power Pellet!!');
   }
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+  console.log(`(1) Eat Inky (${edibleDisplay(inky)})`);
+  console.log(`(2) Eat Blinky(${edibleDisplay(blinky)})`);
+  console.log(`(3) Eat Pinky(${edibleDisplay(pinky)})`);
+  console.log(`(4) Eat Clyde(${edibleDisplay(clyde)})`);
   console.log('(q) Quit');
 }
 
@@ -76,6 +76,13 @@ function displayPrompt() {
   process.stdout.write('\nWaka Waka :v '); // :v is the Pac-Man emoji.
 }
 
+function edibleDisplay(ghost) {
+  if (ghost.edible === true) {
+    return 'edible'
+  } else {
+    return 'inedible'
+  }
+}
 
 // Menu Options
 function eatDot() {
