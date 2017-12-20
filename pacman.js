@@ -79,6 +79,22 @@ function eatDot() {
   score += 10;
 }
 
+function eatGhost(ghost) {
+  if (ghost.edible === false) {
+    lives --;
+    console.log(`\nOuch, ${ghost.colour} ${ghost.name} killed you.`);
+    if (lives <= 0) {
+      console.log(`\n  You REAL dead now.`);
+      drawScreen();
+      setTimeout(function() {
+        process.exit();
+      }, 20);
+    }
+  } else {
+    //code goes in here
+  }
+}
+
 
 // Process Player's Input
 function processInput(key) {
@@ -90,6 +106,19 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
+    case '1':
+      eatGhost(inky);
+      break;
+    case '2':
+      eatGhost(blinky);
+      break;
+    case '3':
+      eatGhost(pinky);
+      break;
+    case '4':
+      eatGhost(clyde);
+      break;
+
     default:
       console.log('\nInvalid Command!');
   }
