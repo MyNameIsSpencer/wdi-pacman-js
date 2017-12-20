@@ -61,6 +61,9 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  if (!powerPellets <= 0) {
+    console.log('(p) Eat Power Pellet!!');
+  }
   console.log('(1) Eat Inky');
   console.log('(2) Eat Blinky');
   console.log('(3) Eat Pinky');
@@ -80,6 +83,14 @@ function eatDot() {
   score += 10;
 }
 
+function eatPowerPellet(ghosts){
+  score += 50;
+  ghosts.forEach (function(ghost) {
+    ghost.edible = true
+  });
+  powerPellets --;
+}
+
 function eatGhost(ghost) {
   if (ghost.edible === false) {
     lives --;
@@ -90,8 +101,10 @@ function eatGhost(ghost) {
         process.exit();
       }, 20);
     }
-  } else {
-    //code goes in here
+  } else if(ghost.edible === true){
+    console.log(`\nYa, take that you ${ghost.colour} ${ghost.name} jerk!`);
+    score += 200;
+    ghost.edible = false;
   }
 }
 
@@ -118,6 +131,13 @@ function processInput(key) {
     case '4':
       eatGhost(clyde);
       break;
+    case 'p':
+      if (powerPellets > 0) {
+        eatPowerPellet(ghosts);
+        break;
+    } else {
+        console.log('\nYou gots no moore poower pallets!!!')
+    }
 
     default:
       console.log('\nInvalid Command!');
