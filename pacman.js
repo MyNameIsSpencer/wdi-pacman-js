@@ -1,6 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+var powerPellets = 4;
 
 
 // Define your ghosts here
@@ -54,7 +55,7 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives);
+  console.log('Score: ' + score + '     Lives: ' + lives + `\n\nPower-Pellets: ${powerPellets}`);
 }
 
 function displayMenu() {
@@ -84,7 +85,6 @@ function eatGhost(ghost) {
     lives --;
     console.log(`\nOuch, ${ghost.colour} ${ghost.name} killed you.`);
     if (lives <= 0) {
-      console.log(`\n  You REAL dead now.`);
       drawScreen();
       setTimeout(function() {
         process.exit();
